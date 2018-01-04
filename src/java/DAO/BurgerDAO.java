@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import DTO.Burger;
+import DTO.PlainBurger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,13 +19,13 @@ import java.io.*;
 public class BurgerDAO extends Dao implements BurgerDAOInterface {
     
     @Override
-    public ArrayList<Burger> viewAllBurgers() {
+    public ArrayList<PlainBurger> viewAllBurgers() {
 
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        ArrayList<Burger> burger = new ArrayList();
+        ArrayList<PlainBurger> burger = new ArrayList();
         try {
             con = this.getConnection();
             //db query to list all the burgers..
@@ -38,19 +38,21 @@ public class BurgerDAO extends Dao implements BurgerDAOInterface {
 
                 int burgerID = rs.getInt("burger_id");
 
-                String breadType = rs.getString("breadtype");
+                String breadType = rs.getString("basicBun");
 
-                String meatType = rs.getString("meattype");
+                String meatType = rs.getString("origBeef");
                 
-                String sauce = rs.getString("sauce");
+                String sauce = rs.getString("ketchup");
                 
-                String salad = rs.getString("salad");
+                String salad = rs.getString("plainLettuce");
+                
+                String desc = rs.getString("description");
 
                 double price = rs.getDouble("price");
 
                 
                 
-                Burger b = new Burger(burgerID, breadType, meatType, sauce, salad, price);
+                PlainBurger b = new PlainBurger(burgerID, breadType, meatType, sauce, salad, desc, price);
                 burger.add(b);
             }
         } catch (SQLException e) {
@@ -73,22 +75,24 @@ public class BurgerDAO extends Dao implements BurgerDAOInterface {
         return burger;
     }
 
-    public boolean createBurger(String breadType, String meatType, String sauce, String salad) {
+    public boolean createBurger(String basicBun, String origBeef, String ketchup, String plainLettuce, String description, double price) {
         Connection con = null;
         PreparedStatement ps = null;
         try {
 
             con = this.getConnection();
             //query adds ingredients
-            String query = "insert into burger(breadtype, meattype, sauce, salad, price) values (?, ?, ?, ?, ?)";
+            String query = "insert into burger(basicBun, origBeef, ketchup, plainLettuce, description, price) values (?, ?, ?, ?, ?, ?)";
             
             //adds the entered information to the db...
             ps = con.prepareStatement(query);
             
-            ps.setString(1, breadType); 
-            ps.setString(2, meatType);
-            ps.setString(3, sauce);
-            ps.setString(4, salad);
+            ps.setString(1, basicBun); 
+            ps.setString(2, origBeef);
+            ps.setString(3, ketchup);
+            ps.setString(4, plainLettuce);
+            ps.setString(5, description);
+            ps.setDouble(6, price);
             
             
             int i = ps.executeUpdate();
@@ -112,5 +116,7 @@ public class BurgerDAO extends Dao implements BurgerDAOInterface {
         }
         return true;
     }
+
+   
     
 }

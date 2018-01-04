@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import DTO.Burger;
+import DTO.PlainBurger;
 import java.util.ArrayList;
 
 /**
@@ -13,8 +13,8 @@ import java.util.ArrayList;
  * @author allen
  */
 public interface BurgerDAOInterface {
-    public ArrayList<Burger> viewAllBurgers();
-    public boolean createBurger(String breadType, String meatType, String sauce, String salad);
+    public ArrayList<PlainBurger> viewAllBurgers();
+    public boolean createBurger(String basicBun, String origBeef, String ketchup, String plainLettuce, String description, double price);
     
     
 }

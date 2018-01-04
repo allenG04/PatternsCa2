@@ -75,24 +75,25 @@ public class BurgerDAO extends Dao implements BurgerDAOInterface {
         return burger;
     }
 
-    public boolean createBurger(String basicBun, String origBeef, String ketchup, String plainLettuce, String description, double price) {
+    public boolean createBurger(int burger_id,String basicBun, String origBeef, String ketchup, String plainLettuce, String description, double price) {
         Connection con = null;
         PreparedStatement ps = null;
         try {
 
             con = this.getConnection();
             //query adds ingredients
-            String query = "insert into burger(basicBun, origBeef, ketchup, plainLettuce, description, price) values (?, ?, ?, ?, ?, ?)";
+            String query = "insert into burger(burger_id,basicBun, origBeef, ketchup, plainLettuce, description, price) values (?,?, ?, ?, ?, ?, ?)";
             
             //adds the entered information to the db...
             ps = con.prepareStatement(query);
             
-            ps.setString(1, basicBun); 
-            ps.setString(2, origBeef);
-            ps.setString(3, ketchup);
-            ps.setString(4, plainLettuce);
-            ps.setString(5, description);
-            ps.setDouble(6, price);
+            ps.setInt(1, burger_id);
+            ps.setString(2, basicBun); 
+            ps.setString(3, origBeef);
+            ps.setString(4, ketchup);
+            ps.setString(5, plainLettuce);
+            ps.setString(6, description);
+            ps.setDouble(7, price);
             
             
             int i = ps.executeUpdate();

@@ -9,7 +9,7 @@ import java.util.Objects;
  *
  * @author allen
  */
-public class PlainBurger {
+public class PlainBurger implements Burger {
     private int burger_id;
     private String basicBun;
     private String origBeef;

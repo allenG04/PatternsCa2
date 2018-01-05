@@ -4,13 +4,15 @@
  * and open the template in the editor.
  */
 package DAO;
+  import DTO.PlainBurger;
 
+import java.util.ArrayList;
 /**
  *
  * @author allen
  */
-import DTO.PlainBurger;
-import java.util.ArrayList;
+
+ 
 
 public class BurgerDAOProxy implements BurgerDAOInterface{
     
@@ -28,4 +30,5 @@ public class BurgerDAOProxy implements BurgerDAOInterface{
     }
     
     
-}
+} 
+

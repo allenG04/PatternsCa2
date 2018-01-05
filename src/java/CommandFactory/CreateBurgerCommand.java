@@ -48,11 +48,11 @@ public class CreateBurgerCommand implements Command {
                 forwardToJsp = "/CreateBurgerSuccess.jsp";
             } else {
                 //if fail, forward to registration fail jsp...
-                forwardToJsp = "/CreateFail.jsp";
+                forwardToJsp = "/CreateBurgerFail.jsp";
             }
         } else {
             //if parameters are null and empty then forward to registration fail jsp...
-            forwardToJsp = "/RegFail.jsp";
+            forwardToJsp = "/CreateBurgerFail.jsp";
         }
 
         return forwardToJsp;

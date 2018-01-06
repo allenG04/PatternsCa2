@@ -23,6 +23,14 @@ public class CommandFactory {
         {
             command = new CreateBurgerCommand();
         }
+        else if (action.equalsIgnoreCase("buyBurger"))
+        {
+            command = new BuyBurgerCommand();
+        }
+        else if (action.equalsIgnoreCase("clearCart"))
+        {
+            command = new ClearCartCommand();
+        }
         else {
              command = new ErrorCommand();
         }

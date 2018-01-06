@@ -5,7 +5,9 @@
  */
 package Service;
 import DTO.PlainBurger;
+import DTO.OrderBurger;
 import DAO.BurgerDAO;
+import DAO.OrderBurgerDAO;
 
 import DTO.BaconAddOn;
 import DTO.CheeseAddOn;
@@ -66,5 +68,20 @@ public class UserService {
            
         }
         return b;
+    }
+    
+    public boolean orderBurger(int orderNumber,int burger_id,int quantity_ordered)
+    {
+        boolean check = false;
+        try 
+        {
+            OrderBurgerDAO dao = new OrderBurgerDAO();
+            check = dao.OrderBurger(orderNumber, burger_id, quantity_ordered);
+        } 
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+        return check;
     }
 }

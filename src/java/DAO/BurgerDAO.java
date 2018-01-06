@@ -117,6 +117,65 @@ public class BurgerDAO extends Dao implements BurgerDAOInterface {
         }
         return true;
     }
+    
+    public PlainBurger findBurgerByID(int burger_id)
+    {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        PlainBurger b = null;
+
+        try
+        {
+            //Get connection object using the methods in the super class DAO.java
+            con = this.getConnection();
+            // looks for the burger_id to match in the database and returns the burger information relating to the id
+            String query = "select * from burger where burger_id = ?";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, burger_id);
+            //PreparedStatement is used to execute SQL
+            rs = ps.executeQuery();
+
+            while (rs.next())
+            {
+                int burgerID = rs.getInt("burger_id");
+                String bun = rs.getString("basicBun");
+                String meat = rs.getString("origBeef");
+                String sauce = rs.getString("ketchup");
+                String salad = rs.getString("sauce");
+                String description = rs.getString("description");
+                double price = rs.getDouble("price");
+                
+
+                b = new PlainBurger(burgerID,bun, meat, sauce,salad, description, price);
+            }
+        } catch (SQLException e)
+        {
+            System.err.println("\tA problem occurred during the findBurgerById method:");
+            System.err.println("\t" + e.getMessage());
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (con != null)
+                {
+                    freeConnection(con);
+                }
+            } catch (SQLException e)
+            {
+                System.err.println("A problem occurred when closing down the findBurgerById Method:\n" + e.getMessage());
+            }
+        }
+        return b;
+    }
 
    
     

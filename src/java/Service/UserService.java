@@ -52,4 +52,19 @@ public class UserService {
         }
         return plainBurger;
     }
+    
+    public PlainBurger findBurgerById(int burgerId)
+    {
+        PlainBurger b = null;
+        BurgerDAO dao = new BurgerDAO();
+        try
+        {
+            b = dao.findBurgerByID(burgerId);
+        } 
+        catch (Exception e)
+        {
+           
+        }
+        return b;
+    }
 }

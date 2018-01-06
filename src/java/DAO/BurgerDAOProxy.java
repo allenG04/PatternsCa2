@@ -28,7 +28,10 @@ public class BurgerDAOProxy implements BurgerDAOInterface{
         boolean burger = bDao.createBurger(burger_id,basicBun, origBeef, ketchup, plainLettuce, description, price);
         return burger;
     }
-    
+  public PlainBurger findBurgerByID(int burger_id){
+      PlainBurger burgerId = bDao.findBurgerByID(burger_id);
+      return burgerId;
+  }  
     
 } 
 

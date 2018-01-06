@@ -15,6 +15,6 @@ import java.util.ArrayList;
 public interface BurgerDAOInterface {
     public ArrayList<PlainBurger> viewAllBurgers();
     public boolean createBurger(int burger_id,String basicBun, String origBeef, String ketchup, String plainLettuce, String description, double price);
-    
+    public PlainBurger findBurgerByID(int burger_id);
     
 }
